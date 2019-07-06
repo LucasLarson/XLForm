@@ -125,7 +125,11 @@
                                                       style:self.tableViewStyle];
         tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         if([tableView respondsToSelector:@selector(cellLayoutMarginsFollowReadableWidth)]){
-            tableView.cellLayoutMarginsFollowReadableWidth = NO;
+            if (@available(iOS 9.0, *)) {
+                self.tableView.cellLayoutMarginsFollowReadableWidth = NO;
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
     if (!tableView.superview){
